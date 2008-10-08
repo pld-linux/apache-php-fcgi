@@ -2,7 +2,7 @@
 Summary:	Support for the PHP via FastCGI protocol for Apache webserver
 Name:		apache1-php-fcgi
 Version:	5.2.6
-Release:	2
+Release:	3
 License:	GPL
 Group:		Applications/WWW
 BuildRequires:	apache1-devel >= 1.3.39
@@ -28,7 +28,7 @@ cat <<'EOF' > apache.conf
 # setup via fastcgi to run php5
 <IfModule mod_fastcgi.c>
 	# the server name is bogus actually, to satisfy mod_fastcgi
-	FastCgiExternalServer %{fcgiapp} -socket /var/run/php/fcgi.sock
+	FastCgiExternalServer %{fcgiapp} -socket /var/run/php/fcgi.sock -idle-timeout 120
 	ScriptAlias /php-fcgi %{fcgiapp}
 	<Location "/php-fcgi">
 		SetHandler fastcgi-script
