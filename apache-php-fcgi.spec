@@ -1,21 +1,21 @@
-%define		apxs	/usr/sbin/apxs1
+%define		apxs	/usr/sbin/apxs
 Summary:	Support for the PHP via FastCGI protocol for Apache webserver
-Name:		apache1-php-fcgi
-Version:	5.2.6
-Release:	3
+Name:		apache-php-fcgi
+Version:	5.6
+Release:	1
 License:	GPL
 Group:		Applications/WWW
-BuildRequires:	apache1-devel >= 1.3.39
+BuildRequires:	apache-devel >= 1.3.39
 BuildRequires:	rpmbuild(macros) >= 1.268
-Requires:	apache1-mod_fastcgi
-Requires:	php-fcgi >= 4:%{version}
+Requires:	apache-mod_fastcgi
+Requires:	php(fcgi)
 Requires:	php-fcgi-init
 Provides:	webserver(php) = %{version}
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_sysconfdir	%(%{apxs} -q SYSCONFDIR 2>/dev/null)
-%define		fcgiapp		/usr/bin/php.fcgi
+%define		fcgiapp		/usr/bin/php56.fcgi
 
 %description
 This virtual package provides support for the PHP via FastCGI
@@ -53,11 +53,11 @@ cp -a apache.conf $RPM_BUILD_ROOT%{_sysconfdir}/conf.d/90_php-fcgi.conf
 rm -rf $RPM_BUILD_ROOT
 
 %post
-%service -q apache restart
+%service -q httpd restart
 
 %postun
 if [ "$1" = "0" ]; then
-	%service -q apache restart
+	%service -q httpd restart
 fi
 
 %files
