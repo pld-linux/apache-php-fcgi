@@ -10,7 +10,7 @@ BuildRequires:	apache-devel >= 1.3.39
 BuildRequires:	rpmbuild(macros) >= 1.268
 Requires:	apache-mod_fastcgi
 Requires:	php(fcgi)
-Requires:	php-fcgi-init
+Suggests:	php-fcgi-init
 Provides:	webserver(php) = %{version}
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
