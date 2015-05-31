@@ -2,12 +2,13 @@
 Summary:	Support for the PHP via FastCGI protocol for Apache webserver
 Name:		apache-php-fcgi
 Version:	5.6
-Release:	1
+Release:	2
 License:	GPL
 Group:		Applications/WWW
 Source0:	apache.conf
 BuildRequires:	apache-devel >= 1.3.39
 BuildRequires:	rpmbuild(macros) >= 1.268
+Requires:	apache-mod_actions
 Requires:	apache-mod_fastcgi
 Requires:	php(fcgi)
 Suggests:	php-fcgi-init
